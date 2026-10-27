@@ -1,0 +1,42 @@
+name: Bug report
+description: A plugin does not do what its README says.
+labels: [bug]
+body:
+  - type: dropdown
+    id: plugin
+    attributes:
+      label: Plugin
+      options:
+        - analytics
+    validations:
+      required: true
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: payload-version
+    attributes:
+      label: Payload version
+      placeholder: "3.89.0"
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: And what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce it
+      description: >
+        The smallest plugin options and calls that show it. If the plugin has a debug mode,
+        turn it on and paste its output. Leave out keys, tokens and personal data.
+    validations:
+      required: true

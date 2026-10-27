@@ -1,0 +1,24 @@
+name: Feature request
+description: Something a plugin should do that it does not.
+labels: [enhancement]
+body:
+  - type: dropdown
+    id: plugin
+    attributes:
+      label: Plugin
+      options:
+        - analytics
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What you are trying to do, and where the plugin stops you.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you would like
+      description: The option, provider or behaviour you have in mind, if you have one.

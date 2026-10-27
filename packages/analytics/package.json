@@ -1,0 +1,89 @@
+{
+  "name": "@ciphercru/payload-analytics",
+  "version": "0.1.0",
+  "description": "Analytics routing for Payload 3: an event registry, consent-gated providers and a browser runtime.",
+  "license": "MIT",
+  "author": "CipherCru Innovations Private Limited",
+  "keywords": [
+    "payload",
+    "payload-plugin",
+    "payloadcms",
+    "analytics",
+    "consent",
+    "gtm",
+    "ga4",
+    "hubspot"
+  ],
+  "homepage": "https://github.com/CipherCru-Innovation/payloadcms-plugins/tree/main/packages/analytics#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CipherCru-Innovation/payloadcms-plugins.git",
+    "directory": "packages/analytics"
+  },
+  "bugs": {
+    "url": "https://github.com/CipherCru-Innovation/payloadcms-plugins/issues"
+  },
+  "type": "module",
+  "files": [
+    "dist",
+    "!dist/.tsbuildinfo",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/server/index.d.ts",
+      "default": "./dist/server/index.js"
+    },
+    "./client": {
+      "types": "./dist/client/index.d.ts",
+      "default": "./dist/client/index.js"
+    },
+    "./client/react": {
+      "types": "./dist/client/react.d.ts",
+      "default": "./dist/client/react.js"
+    },
+    "./providers/adapters": {
+      "types": "./dist/providers/adapters.d.ts",
+      "default": "./dist/providers/adapters.js"
+    },
+    "./csp": {
+      "types": "./dist/csp.d.ts",
+      "default": "./dist/csp.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "build": "tsc -p tsconfig.build.json",
+    "watch": "tsc -p tsconfig.build.json --watch --preserveWatchOutput",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test \"tests/**/*.test.ts\"",
+    "check": "publint && attw --pack . --profile esm-only",
+    "prepack": "npm run clean && npm run build"
+  },
+  "engines": {
+    "node": "^18.20.2 || >=20.9.0"
+  },
+  "peerDependencies": {
+    "payload": "^3.89.0",
+    "react": "^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "payload": "3.89.0",
+    "react": "19.2.8"
+  }
+}

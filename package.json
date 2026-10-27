@@ -1,0 +1,32 @@
+{
+  "name": "payloadcms-plugins",
+  "private": true,
+  "description": "CipherCru's plugins for Payload CMS.",
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm test --workspaces --if-present",
+    "lint": "eslint .",
+    "check:packages": "npm run check --workspaces --if-present",
+    "changeset": "changeset",
+    "release": "changeset publish"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.5",
+    "@changesets/cli": "3.0.3",
+    "@eslint/js": "10.0.1",
+    "eslint": "10.13.0",
+    "publint": "0.3.25",
+    "tsx": "4.22.4",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.72.1"
+  },
+  "engines": {
+    "node": "^22.13 || ^24 || >=26"
+  }
+}

@@ -1,0 +1,33 @@
+name: Label issues
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  plugin:
+    name: Label by plugin
+    runs-on: ubuntu-latest
+    steps:
+      # The issue forms' Plugin dropdown becomes a plugin:<name> label, for YouTrack's import
+      # to carry into its Plugin field. Only an existing label is applied, never created.
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const match = context.payload.issue.body?.match(/^### Plugin[ \t]*\r?\n\s*([a-z0-9-]+)\s*$/m);
+            if (!match) return;
+            const name = `plugin:${match[1]}`;
+            try {
+              await github.rest.issues.getLabel({ ...context.repo, name });
+            } catch {
+              core.warning(`No label ${name}; add it before using it in the issue forms.`);
+              return;
+            }
+            await github.rest.issues.addLabels({
+              ...context.repo,
+              issue_number: context.payload.issue.number,
+              labels: [name],
+            });
